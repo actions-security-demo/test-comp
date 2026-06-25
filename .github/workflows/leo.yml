@@ -12,7 +12,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@v2.17.0
+        uses: step-security/harden-runner@v2.19.4
         with:
           egress-policy: audit
 
@@ -36,9 +36,10 @@ jobs:
     timeout-minutes: 12
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@v2.17.0
+        uses: step-security/harden-runner@v2.19.4
         with:
           egress-policy: audit
+
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
