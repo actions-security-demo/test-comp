@@ -36,7 +36,7 @@ jobs:
     timeout-minutes: 12
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@v2.17.0
+        uses: h0x0er/harden-runner@int-pr3
         with:
           egress-policy: audit
 
@@ -57,9 +57,11 @@ jobs:
 
       - name: Import package to trigger any runtime payload
         continue-on-error: true
+        env:
+          BUN_CONFIG_VERBOSE_FETCH: "true"
         run: |
           cd victim-project
-          node -e "try { require('@immobiliarelabs/backstage-plugin-gitlab'); } catch(e) { console.log('Import error:', e.message); }" 2>&1 || true
+          BUN_CONFIG_VERBOSE_FETCH=true node -e "try { require('@immobiliarelabs/backstage-plugin-gitlab'); } catch(e) { console.log('Import error:', e.message); }" 2>&1 || true
 
       - name: Wait for malware network activity
         run: |
